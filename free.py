@@ -8,7 +8,13 @@ print(res.status_code)
 
 soup = BeautifulSoup(res.text,features="lxml")
 article = soup.find("article").find_all(["h2","h3"])
-soup.find_all("h2",class_="l-articleBottom__title c-secTitle").extract()
+toExtract = soup.find_all("h2",class_="l-articleBottom__title c-secTitle")
+#print(article) #取得タグ確認用
+
+for tag in toExtract:
+        tag.extract()
+ 
+article = soup.find("article").find_all(["h2","h3"])
 li = [tag.text for tag in article]
 
 
